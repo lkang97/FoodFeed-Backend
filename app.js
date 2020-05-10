@@ -14,16 +14,6 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// Error handler to log errors.
-app.use((err, req, res, next) => {
-  if (process.env.NODE_ENV === "production") {
-    // TODO Log the error to the database.
-  } else {
-    console.error(err);
-  }
-  next(err);
-});
-
 // Generic error handler.
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
