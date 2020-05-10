@@ -1,0 +1,33 @@
+{
+  "name": "FoodFeed-Backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "per-env",
+    "start:development": "nodemon -r dotenv/config ./bin/www",
+    "start:production": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkang97/FoodFeed-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lkang97/FoodFeed-Backend/issues"
+  },
+  "homepage": "https://github.com/lkang97/FoodFeed-Backend#readme",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-cli": "^3.1.0",
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "per-env": "^1.0.2"
+  }
+}
