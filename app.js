@@ -1,11 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 
-const routes = require("./routes");
 const app = express();
+const usersRouter = require("./routes/users");
 
 app.use(morgan("dev"));
-app.use(routes);
+app.use("/users", usersRouter);
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {

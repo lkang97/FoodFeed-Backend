@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       username: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(30),
         unique: true,
       },
       email: {
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       profileName: {
         allowNull: true,
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
       },
       imageUrl: {
         allowNull: false,
@@ -35,7 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Post, { foreignKey: "userId" });
+    User.hasMany(models.Comment, { foreignKey: "userId" });
+    User.hasMany(models.Like, { foreignKey: "userId" });
   };
 
   User.prototype.validatePassword = function (password) {
