@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       biography: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       hashedPassword: {
         allowNull: false,

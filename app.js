@@ -5,6 +5,10 @@ const cors = require("cors");
 
 const app = express();
 const usersRouter = require("./routes/users");
+const postsRouter = require("./routes/posts");
+const commentsRouter = require("./routes/comments");
+const likesRouter = require("./routes/likes");
+const imageRouter = require("./routes/image-upload");
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -14,6 +18,11 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/users", usersRouter);
+app.use("/", postsRouter);
+app.use("/", commentsRouter);
+app.use("/", likesRouter);
+app.use("/", imageRouter);
+
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
   const err = new Error("The requested page couldn't be found.");
