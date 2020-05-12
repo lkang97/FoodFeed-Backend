@@ -1,9 +1,9 @@
 const express = require("express");
 
 const db = require("../db/models");
-const { User, Post } = db;
-const { getUserToken, requireAuth } = require("../auth");
-const { asyncHandler, handleValidationErrors } = require("../utils");
+const { Post } = db;
+const { requireAuth } = require("../auth");
+const { asyncHandler } = require("../utils");
 
 const router = express.Router();
 
