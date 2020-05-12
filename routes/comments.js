@@ -2,7 +2,6 @@ const express = require("express");
 
 const db = require("../db/models");
 const { Comment } = db;
-const { requireAuth } = require("../auth");
 const { asyncHandler } = require("../utils");
 
 const router = express.Router();
@@ -14,8 +13,9 @@ const userPermissionError = () => {
   return err;
 };
 
+//Returns all the comments for a particular post
 router.get(
-  "/posts/:postId/comments",
+  "/posts/:postId(\\d+)/comments",
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
     const comments = await Comment.findAll({ where: { postId } });
@@ -23,8 +23,9 @@ router.get(
   })
 );
 
+//Creates a new comment on a single post
 router.post(
-  "/posts/:postId/comments",
+  "/posts/:postId(\\d+)/comments",
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
     const { userId, comment } = req.body;
@@ -35,8 +36,9 @@ router.post(
   })
 );
 
+//Edits a single comment if the userId matches the comment's
 router.put(
-  "/comments/:id",
+  "/comments/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
     const commentId = parseInt(req.params.id, 10);
     const { userId, comment } = req.body;
@@ -50,8 +52,9 @@ router.put(
   })
 );
 
+//Deletes a comment by its id if the userId matches the comment's
 router.delete(
-  "/comments/:id",
+  "/comments/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
     const commentId = parseInt(req.params.id, 10);
     const { userId } = req.body;

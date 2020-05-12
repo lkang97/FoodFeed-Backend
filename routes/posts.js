@@ -7,8 +7,9 @@ const { asyncHandler } = require("../utils");
 
 const router = express.Router();
 
+//Returns all the posts for a single user
 router.get(
-  "/users/:userId/posts",
+  "/users/:userId(\\d+)/posts",
   asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10);
     const posts = await Post.findAll({ where: { userId } });
@@ -18,6 +19,7 @@ router.get(
   })
 );
 
+//Returns all the posts from the database
 router.get(
   "/posts",
   asyncHandler(async (req, res) => {
@@ -28,8 +30,9 @@ router.get(
   })
 );
 
+//Returns a single post from its id
 router.get(
-  "/posts/:id",
+  "/posts/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.id, 10);
     const post = await Post.findByPk(postId);
@@ -39,6 +42,7 @@ router.get(
   })
 );
 
+//Creates a new post
 router.post(
   "/posts",
   requireAuth,
@@ -49,8 +53,9 @@ router.post(
   })
 );
 
+//Deletes a post if the userId matches the post's original user
 router.delete(
-  "/posts/:id",
+  "/posts/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const { userId } = req.body;
     const postId = parseInt(req.params.id, 10);
@@ -61,4 +66,5 @@ router.delete(
     }
   })
 );
+
 module.exports = router;
