@@ -38,8 +38,8 @@ router.get(
     const userId = parseInt(req.params.id, 10);
     const user = await User.findByPk(userId);
     if (user) {
-      const { username, profileName, imageUrl, biography } = user;
-      res.json({ username, profileName, imageUrl, biography });
+      const { username, profileName, imageUrl, biography, email } = user;
+      res.json({ username, profileName, imageUrl, biography, email });
     } else {
       next(userNotFoundError(userId));
     }
@@ -52,13 +52,20 @@ router.put(
   requireAuth,
   handleValidationErrors,
   asyncHandler(async (req, res, next) => {
-    const { profileName, imageUrl, biography } = req.body;
+    const {
+      profileName,
+      imageUrl,
+      biography,
+      email,
+      username,
+      userId: currentUserId,
+    } = req.body;
 
     const userId = parseInt(req.params.id, 10);
     const user = await User.findByPk(userId);
-    if (user) {
-      await user.update({ profileName, imageUrl, biography });
-      res.json(user);
+    if (user && userId === Number(currentUserId)) {
+      await user.update({ profileName, imageUrl, biography, email, username });
+      res.status(200).json({ user });
     } else {
       next(userNotFound(userId));
     }

@@ -12,7 +12,10 @@ router.get(
   "/users/:userId(\\d+)/posts",
   asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10);
-    const posts = await Post.findAll({ where: { userId } });
+    const posts = await Post.findAll({
+      where: { userId },
+      order: [["id", "DESc"]],
+    });
     if (posts) {
       res.json({ posts });
     }
