@@ -1,7 +1,7 @@
 const express = require("express");
 
 const db = require("../db/models");
-const { Post } = db;
+const { Post, User } = db;
 const { requireAuth } = require("../auth");
 const { asyncHandler } = require("../utils");
 
@@ -39,8 +39,9 @@ router.get(
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.id, 10);
     const post = await Post.findByPk(postId);
+    const { username } = await User.findByPk(Number(post.userId));
     if (post) {
-      res.json({ post });
+      res.json({ post, username });
     }
   })
 );
