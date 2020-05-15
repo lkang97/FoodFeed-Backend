@@ -29,6 +29,42 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        userId: 2,
+        imageUrl:
+          "https://embed.widencdn.net/img/mccormick/xylt4a1x9r/1365x1365px/Supreme%20Pasta%20Salad_2019-04-10_8701_TSUCALAS.jpg?crop=true&anchor=255,0&q=80&color=ffffffff&u=o2hyef",
+        // imageUrl: "https://foodfeed.s3.us-east-2.amazonaws.com/1589318358364",
+        caption: "PASTA-bly the best dish",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 2,
+        imageUrl:
+          "https://embed.widencdn.net/img/mccormick/xylt4a1x9r/1365x1365px/Supreme%20Pasta%20Salad_2019-04-10_8701_TSUCALAS.jpg?crop=true&anchor=255,0&q=80&color=ffffffff&u=o2hyef",
+        // imageUrl: "https://foodfeed.s3.us-east-2.amazonaws.com/1589318358364",
+        caption: "PASTA-bly the best dish",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 2,
+        imageUrl:
+          "https://embed.widencdn.net/img/mccormick/xylt4a1x9r/1365x1365px/Supreme%20Pasta%20Salad_2019-04-10_8701_TSUCALAS.jpg?crop=true&anchor=255,0&q=80&color=ffffffff&u=o2hyef",
+        // imageUrl: "https://foodfeed.s3.us-east-2.amazonaws.com/1589318358364",
+        caption: "PASTA-bly the best dish",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 2,
+        imageUrl:
+          "https://embed.widencdn.net/img/mccormick/xylt4a1x9r/1365x1365px/Supreme%20Pasta%20Salad_2019-04-10_8701_TSUCALAS.jpg?crop=true&anchor=255,0&q=80&color=ffffffff&u=o2hyef",
+        // imageUrl: "https://foodfeed.s3.us-east-2.amazonaws.com/1589318358364",
+        caption: "PASTA-bly the best dish",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
