@@ -11,8 +11,11 @@ router.get(
   "/posts/:postId(\\d+)/likes",
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
-    const likes = await Like.findAll({ where: { postId } });
-    res.json({ likes });
+    const likes = await Like.findAll({
+      where: { postId },
+    });
+    const userIds = likes.map((like) => like.userId);
+    res.json({ userIds });
   })
 );
 
