@@ -32,12 +32,12 @@ router.post(
 
 //Removes a like from a post
 router.delete(
-  "/likes/:id(\\d+)",
+  "/posts/:postId(\\d+)/likes",
   asyncHandler(async (req, res) => {
-    const likeId = parseInt(req.params.id, 10);
+    const postId = parseInt(req.params.postId, 10);
     const { userId } = req.body;
-    const like = await Like.findByPk(likeId);
-    if (like && Number(userId) === like.userId) {
+    const like = await Like.findOne({ where: { userId, postId } });
+    if (like) {
       await like.destroy();
       res.status(204).end();
     }
