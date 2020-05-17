@@ -29,7 +29,7 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const posts = await Post.findAll({
-      include: [{ model: User, attributes: ["username", "imageUrl"] }],
+      include: [{ model: User, attributes: ["username", "imageUrl", "id"] }],
       order: [["id", "DESC"]],
     });
     if (posts) {
