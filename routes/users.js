@@ -33,7 +33,7 @@ const validateEmailAndPassword = [
 // for a single user
 router.get(
   "/:id(\\d+)",
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res, next) => {
     const userId = parseInt(req.params.id, 10);
     const user = await User.findByPk(userId);

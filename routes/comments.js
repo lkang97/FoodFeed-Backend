@@ -3,6 +3,7 @@ const express = require("express");
 const db = require("../db/models");
 const { Comment } = db;
 const { asyncHandler } = require("../utils");
+const { requireAuth } = require("../auth");
 
 const router = express.Router();
 
@@ -26,6 +27,7 @@ router.get(
 //Creates a new comment on a single post
 router.post(
   "/posts/:postId(\\d+)/comments",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
     const { userId, comment } = req.body;
@@ -39,6 +41,7 @@ router.post(
 //Edits a single comment if the userId matches the comment's
 router.put(
   "/comments/:id(\\d+)",
+  requireAuth,
   asyncHandler(async (req, res, next) => {
     const commentId = parseInt(req.params.id, 10);
     const { userId, comment } = req.body;
@@ -55,6 +58,7 @@ router.put(
 //Deletes a comment by its id if the userId matches the comment's
 router.delete(
   "/comments/:id(\\d+)",
+  requireAuth,
   asyncHandler(async (req, res, next) => {
     const commentId = parseInt(req.params.id, 10);
     const { userId } = req.body;

@@ -1,5 +1,6 @@
 const express = require("express");
 const { asyncHandler } = require("../utils");
+const { requireAuth } = require("../auth");
 
 const db = require("../db/models");
 const { Like } = db;
@@ -22,6 +23,7 @@ router.get(
 //Adds a like onto a post
 router.post(
   "/posts/:postId(\\d+)/likes",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
     const { userId } = req.body;
@@ -33,6 +35,7 @@ router.post(
 //Removes a like from a post
 router.delete(
   "/posts/:postId(\\d+)/likes",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
     const { userId } = req.body;
