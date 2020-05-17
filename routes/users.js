@@ -129,8 +129,9 @@ router.post(
       err.errors = ["The provided credentials were invalid."];
       return next(err);
     }
+    res.json({ message: "success" });
     const token = getUserToken(user);
-    res.json({ token, user: { id: user.id, name: user.username } });
+    // res.json({ token, user: { id: user.id, name: user.username } });
   })
 );
 
