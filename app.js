@@ -13,7 +13,7 @@ const imageRouter = require("./routes/image-upload");
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
