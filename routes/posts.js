@@ -14,6 +14,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10);
     const posts = await Post.findAll({
+      include: [{ model: User, attributes: ["username", "imageUrl", "id"] }],
       where: { userId },
       order: [["id", "DESC"]],
     });
@@ -45,9 +46,9 @@ router.get(
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.id, 10);
     const post = await Post.findByPk(postId);
-    const { username } = await User.findByPk(Number(post.userId));
+    const { username, imageUrl } = await User.findByPk(Number(post.userId));
     if (post) {
-      res.json({ post, username });
+      res.json({ post, username, imageUrl });
     }
   })
 );
