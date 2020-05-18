@@ -1,7 +1,7 @@
 const express = require("express");
 
 const db = require("../db/models");
-const { Post, User } = db;
+const { Post, User, Comment, Like } = db;
 const { requireAuth } = require("../auth");
 const { asyncHandler } = require("../utils");
 
@@ -72,7 +72,17 @@ router.delete(
     const { userId } = req.body;
     const postId = parseInt(req.params.id, 10);
     const post = await Post.findByPk(postId);
+    const comments = await Comment.findAll({ where: { postId } });
+    const likes = await Like.findAll({ where: { postId } });
     if (post && Number(userId) === post.userId) {
+      for (let comment of comments) {
+        await comment.destroy();
+      }
+
+      for (let like of likes) {
+        await like.destroy();
+      }
+
       await post.destroy();
       res.status(204).end();
     }
