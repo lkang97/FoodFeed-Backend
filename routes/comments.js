@@ -1,7 +1,7 @@
 const express = require("express");
 
 const db = require("../db/models");
-const { Comment } = db;
+const { Comment, User } = db;
 const { asyncHandler } = require("../utils");
 const { requireAuth } = require("../auth");
 
@@ -19,7 +19,11 @@ router.get(
   "/posts/:postId(\\d+)/comments",
   asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
-    const comments = await Comment.findAll({ where: { postId } });
+    const comments = await Comment.findAll({
+      include: [{ model: User, attributes: ["username", "imageUrl", "id"] }],
+      where: { postId },
+      order: [["createdAt", "ASC"]],
+    });
     res.json({ comments });
   })
 );
